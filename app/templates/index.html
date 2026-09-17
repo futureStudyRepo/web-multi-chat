@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Multi Chat Demo</title>
+  <link rel="stylesheet" href="{{ url_for('static', path='app.css') }}">
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <p class="eyebrow">FastAPI + WebSocket + SQLite3</p>
+      <h1>멀티 채팅방 데모</h1>
+      <p class="copy">방을 만들고, 원하는 방에 입장해서, 방별로 독립된 실시간 대화를 주고받는 예제입니다.</p>
+    </section>
+
+    <section class="layout">
+      <aside class="panel sidebar">
+        <div class="panel-head">
+          <div>
+            <h2>채팅방</h2>
+            <p class="subcopy">새 방을 만들거나 기존 방에 입장하세요.</p>
+          </div>
+          <button id="refresh-rooms-button" type="button" class="ghost-button">새로고침</button>
+        </div>
+
+        <label class="field-label" for="new-room-name">방 이름</label>
+        <div class="inline-form">
+          <input id="new-room-name" class="text-input" placeholder="예: 프로젝트 회의방">
+          <input id="new-room-password" class="text-input" type="password" placeholder="비밀번호(선택)">
+          <button id="create-room-button" type="button">방 생성</button>
+        </div>
+
+        <div id="room-list" class="room-list"></div>
+      </aside>
+
+      <section class="chat-column">
+        <div class="panel profile-panel">
+          <div class="panel-head">
+            <div>
+              <h2 id="room-title">아직 입장한 방이 없습니다</h2>
+              <p id="room-meta" class="subcopy">왼쪽에서 방을 선택한 뒤 입장해 주세요.</p>
+            </div>
+            <p id="connection-status" class="status-chip offline">오프라인</p>
+          </div>
+
+          <div class="profile-grid">
+            <div>
+              <label class="field-label" for="nickname">닉네임</label>
+              <input id="nickname" class="text-input" placeholder="예: alex">
+            </div>
+            <div>
+              <label class="field-label" for="room-password">방 비밀번호</label>
+              <input id="room-password" class="text-input" type="password" placeholder="공개 방이면 비워두세요">
+            </div>
+            <div class="button-row">
+              <button id="delete-room-button" type="button" class="ghost-button">방 삭제</button>
+              <button id="disconnect-button" type="button" class="secondary">방 나가기</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="chat-grid">
+          <section class="panel">
+            <div id="message-list" class="message-list"></div>
+          </section>
+
+          <aside class="panel presence-panel">
+            <div class="panel-head">
+              <h2>접속 중</h2>
+            </div>
+            <ul id="user-list" class="user-list"></ul>
+          </aside>
+        </div>
+
+        <section class="panel composer-panel">
+          <label class="field-label" for="message-input">메시지</label>
+          <textarea id="message-input" class="text-area" placeholder="메시지를 입력하세요."></textarea>
+          <div class="button-row">
+            <button id="send-button" type="button">보내기</button>
+          </div>
+        </section>
+      </section>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', path='app.js') }}"></script>
+</body>
+</html>
