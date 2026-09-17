@@ -1,4 +1,4 @@
-# Web Multi Chat Demo
+# Web Multi Chat
 
 FastAPI, WebSocket, SQLite3로 만든 멀티 채팅방 예제입니다.
 
@@ -25,7 +25,7 @@ uvicorn app.main:app --reload
 ## 저장소 구조
 
 ```text
-web-multi-chat-demo/
+web-multi-chat/
   app/
     main.py
     db.py
